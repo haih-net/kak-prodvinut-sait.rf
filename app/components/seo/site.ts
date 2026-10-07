@@ -1,9 +1,9 @@
 export const site = {
-  origin: 'https://haih.site',
-  name: 'HAIH',
-  language: 'en',
+  origin: 'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai',
+  name: 'Как продвинуть сайт',
+  language: 'ru',
   description:
-    'Building a website with AI, starting from requirements. Explore the working implementation, technology choices, experiments and lessons from HAIH.',
+    'Авторский сайт о продвижении, поиске, рекламе и доверии к трафику. Собственный эксперимент: 50 сайтов за месяц.',
 }
 
 // Preserve the identity published at https://fi1osof.ru/about.

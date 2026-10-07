@@ -1,25 +1,16 @@
 import type { MetaFunction } from 'react-router'
 import { createSeoMeta, unavailableSeoMeta } from '../components/seo/SeoHeaders'
 import type { SeoHandle } from '../components/seo/SeoHeaders'
-import { posts } from '../pages/Blog'
-import { post1Seo } from '../pages/Blog/posts/Post1/data'
+import { BlogPage } from '../pages/Blog/BlogPage'
 
-export const handle = {
+export const handle: SeoHandle = {
   seo: {
-    title: 'Building HAIH: observations and lessons — HAIH Blog',
+    title: 'Дневник: 50 сайтов за месяц',
     description:
-      'Field notes on building websites and applications with AI: working results, unexpected failures and open decisions, with a project version and commit for each story.',
+      'Дневник эксперимента «50 сайтов за месяц». Скоро здесь появятся первые записи о решениях, работе и результатах.',
     path: '/blog',
-    image: post1Seo.image,
-    blog: { posts },
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-    ],
   },
-} satisfies SeoHandle
-
+}
 export const meta: MetaFunction = ({ error }) =>
   error ? unavailableSeoMeta() : createSeoMeta(handle.seo)
-
-export { default } from '../pages/Blog/BlogPage'
+export default BlogPage

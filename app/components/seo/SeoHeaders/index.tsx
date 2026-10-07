@@ -31,8 +31,8 @@ export interface SeoHandle {
 }
 
 const notFound: SeoHeadersProps = {
-  title: 'Page not found — HAIH',
-  description: 'The requested page could not be found.',
+  title: 'Страница не найдена — Как продвинуть сайт',
+  description: 'Такой страницы нет.',
   noindex: true,
 }
 

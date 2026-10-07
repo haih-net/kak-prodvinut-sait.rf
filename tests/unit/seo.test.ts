@@ -5,10 +5,16 @@ import type { SchemaType } from '../../app/components/seo/JsonLd/types'
 
 describe('canonicalUrl', () => {
   test.each([
-    ['/', 'https://haih.site/'],
-    ['/blog/?ref=test#article', 'https://haih.site/blog'],
-    ['/blog///', 'https://haih.site/blog'],
-    ['https://haih.site/solutions?ref=test', 'https://haih.site/solutions'],
+    ['/', 'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai/'],
+    [
+      '/blog/?ref=test#article',
+      'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai/blog',
+    ],
+    ['/blog///', 'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai/blog'],
+    [
+      'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai/solutions?ref=test',
+      'https://xn-----6kccil3akbb1bimovoem6o.xn--p1ai/solutions',
+    ],
   ])('normalizes %s', (path: string, expected: string) => {
     expect(canonicalUrl(path)).toBe(expected)
   })

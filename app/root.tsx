@@ -1,9 +1,9 @@
-import { HtmlStyled } from './components/Layout/styles'
+import { DocumentStyled as HtmlStyled } from './Custom/components/SiteLayout/styles'
 import { SeoHeaders, unavailableSeoMeta } from './components/seo/SeoHeaders'
 
 export const meta = unavailableSeoMeta
 import type { ReactNode } from 'react'
-import { Layout as SiteLayout } from './components/Layout'
+import { SiteLayout } from './Custom/components/SiteLayout'
 import {
   Links,
   Outlet,
@@ -17,11 +17,11 @@ const betterlyticsId = import.meta.env.BETTERLYTICS_SITE_ID
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <HtmlStyled lang="en">
+    <HtmlStyled lang="ru">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <SeoHeaders />
         <Links />
         {betterlyticsId && (
@@ -52,10 +52,10 @@ export function ErrorBoundary() {
       <h1 tabIndex={-1}>
         {isRouteErrorResponse(error)
           ? `${error.status} ${error.statusText}`
-          : 'Something went wrong'}
+          : 'Не удалось открыть страницу'}
       </h1>
-      <p>Please reload the page to retry.</p>
-      <a href="/">Return home</a>
+      <p>Обновите страницу, чтобы попробовать ещё раз.</p>
+      <a href="/">На главную</a>
     </>
   )
 }

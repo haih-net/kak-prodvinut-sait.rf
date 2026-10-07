@@ -4,8 +4,8 @@ import { createSeoMeta, unavailableSeoMeta } from '../components/seo/SeoHeaders'
 import type { SeoHandle } from '../components/seo/SeoHeaders'
 export const handle = {
   seo: {
-    title: 'Page not found — HAIH',
-    description: 'The requested page could not be found.',
+    title: 'Страница не найдена — Как продвинуть сайт',
+    description: 'Такой страницы нет.',
     noindex: true,
   },
 } satisfies SeoHandle
@@ -18,8 +18,8 @@ export const loader = (): ReturnType<typeof data<null>> =>
 export default function NotFound() {
   return (
     <>
-      <h1 tabIndex={-1}>Page not found</h1>
-      <p>This URL does not exist.</p>
+      <h1 tabIndex={-1}>Страница не найдена</h1>
+      <p>Проверьте адрес страницы.</p>
     </>
   )
 }

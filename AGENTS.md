@@ -1,3 +1,17 @@
+# Как продвинуть сайт — правила проекта
+
+Это самостоятельный русскоязычный авторский информационный сайт. Все новые тексты и комментарии пишутся на русском; идентификаторы кода сохраняют техническое написание. Эти уточнения имеют приоритет над унаследованным описанием HAIH ниже.
+
+Сервер размещения: анализ-сайта.рф (уточнение владельца от 7 октября 2026). Не размещать на сервере ии-поддержка-сайта.рф.
+
+Вступление — три отдельных полноэкранных блока: «Как продвинуть сайт?», «Никак» без точки, «Серьезно. Никак.». У вопроса и ответа один шрифт и размер. Параллакс при прокрутке, отключаемый при prefers-reduced-motion. Чёрный фон запрещён; пока простые светлые фоны и текстовая подача. Баннер на собственных сайтах: «Задаетесь вопросом Как продвинуть сайт? У нас есть ответ». Не добавлять продающие кнопки и пояснения на первый экран. Ниже — авторские доводы и эксперимент. Главная содержит актуальную позицию; дневник идёт от старых записей к новым.
+
+Сайт выражает частную оценку владельца с 19+ годами опыта. Не опровергать, не усиливать и не смягчать позицию по собственной инициативе. Перепроверка доводов — по запросу владельца. Не выдумывать подтверждения и результаты. Продажа услуг не является главной целью сайта.
+
+Страницы и оформление сайта находятся в app/Custom. Общая основа: haih.site → website-template → этот независимый клон. React Router требует default-экспорты в интеграционных входах; собственные компоненты имеют именованные экспорты и React.FC. Использовать Linaria и mobile-first. Тёмно-зелёная и лаймовая палитры, Claude и сервисы Anthropic запрещены.
+
+---
+
 # HAIH Site — Project Instructions
 
 ## Purpose
@@ -165,3 +179,7 @@ Record implemented decisions, their motivating needs, known limitations, and rep
 Use focused commits for coherent changes and versioned releases for reproducible milestones when requested as part of the workflow. Do not publish, deploy, or create remote releases merely because a local build succeeds.
 
 Gradually turn verified implementation knowledge into English Solution pages. Keep documentation proportional to the project's current complexity.
+
+## Visitor-facing content and sharing
+
+Do not explain absent features or sales intentions to visitors (for example, “Здесь я ничего напрямую не продаю”). Present the argument directly. The third screen includes “Поделиться ответом”; every page has a footer sharing block using react-share. Shared URLs must use the public canonical domain, never the preview hostname.
