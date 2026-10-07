@@ -51,6 +51,8 @@ test('share fallback and footer use canonical page URLs, including after SPA nav
     'Ссылка скопирована',
   )
   await page.getByRole('link', { name: 'Читать дневник с начала' }).click()
+  await expect(page).toHaveURL(/\/blog$/)
+  await expect(page).toHaveTitle('Дневник: 50 сайтов за месяц')
   await page
     .locator('.share-footer')
     .getByRole('button', { name: 'Поделиться страницей', exact: true })
@@ -89,6 +91,8 @@ test('primary button passes the canonical answer to native sharing', async ({
       .getByRole('button', { name: 'Telegram', exact: true }),
   ).toBeHidden()
   await page.getByRole('link', { name: 'Читать дневник с начала' }).click()
+  await expect(page).toHaveURL(/\/blog$/)
+  await expect(page).toHaveTitle('Дневник: 50 сайтов за месяц')
   await page
     .locator('.share-footer')
     .getByRole('button', { name: 'Поделиться страницей', exact: true })

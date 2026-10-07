@@ -5,7 +5,7 @@ import { HomePage } from '../Custom/pages/HomePage'
 
 export const handle: SeoHandle = {
   seo: {
-    title: 'Как продвинуть сайт? Никак.',
+    title: 'Как продвинуть сайт?',
     description:
       'Авторская позиция о SEO, рекламе и доверии к трафику. 19+ лет в веб-разработке и собственный эксперимент: 50 сайтов за месяц.',
     path: '/',
