@@ -52,7 +52,7 @@ test('share fallback and footer use canonical page URLs, including after SPA nav
   )
   await page.getByRole('link', { name: 'Читать дневник с начала' }).click()
   await expect(page).toHaveURL(/\/blog$/)
-  await expect(page).toHaveTitle('Дневник: 50 сайтов за месяц')
+  await expect(page).toHaveTitle('Дневник эксперимента — Как продвинуть сайт')
   await page
     .locator('.share-footer')
     .getByRole('button', { name: 'Поделиться страницей', exact: true })
@@ -84,7 +84,7 @@ test('primary button passes the canonical answer to native sharing', async ({
     .click()
   expect(
     await page.evaluate(() => Reflect.get(window, '__nativeShare')),
-  ).toEqual({ title: 'Как продвинуть сайт? Никак.', url: canonicalUrl('/') })
+  ).toEqual({ title: 'Как продвинуть сайт?', url: canonicalUrl('/') })
   await expect(
     page
       .locator('.share-compact')
@@ -92,7 +92,7 @@ test('primary button passes the canonical answer to native sharing', async ({
   ).toBeHidden()
   await page.getByRole('link', { name: 'Читать дневник с начала' }).click()
   await expect(page).toHaveURL(/\/blog$/)
-  await expect(page).toHaveTitle('Дневник: 50 сайтов за месяц')
+  await expect(page).toHaveTitle('Дневник эксперимента — Как продвинуть сайт')
   await page
     .locator('.share-footer')
     .getByRole('button', { name: 'Поделиться страницей', exact: true })
@@ -100,7 +100,7 @@ test('primary button passes the canonical answer to native sharing', async ({
   expect(
     await page.evaluate(() => Reflect.get(window, '__nativeShare')),
   ).toEqual({
-    title: 'Дневник: 50 сайтов за месяц',
+    title: 'Дневник эксперимента — Как продвинуть сайт',
     url: canonicalUrl('/blog'),
   })
   await expect(
