@@ -12,8 +12,8 @@ export const handle = {
 
 export const meta: MetaFunction = ({ error }) =>
   error ? unavailableSeoMeta() : createSeoMeta(handle.seo)
-export const loader = (): ReturnType<typeof data<null>> =>
-  data(null, { status: 404 })
+export const loader = (): ReturnType<typeof data<{ statusCode: number }>> =>
+  data({ statusCode: 404 }, { status: 404 })
 
 export default function NotFound() {
   return (

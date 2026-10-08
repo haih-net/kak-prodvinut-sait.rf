@@ -1,3 +1,5 @@
+import { Statistics } from './components/Statistics'
+import { errorPageStatusCode } from './components/Statistics/status'
 import { DocumentStyled as HtmlStyled } from './Custom/components/SiteLayout/styles'
 import { SeoHeaders, unavailableSeoMeta } from './components/seo/SeoHeaders'
 
@@ -42,13 +44,19 @@ export function Layout({ children }: { children: ReactNode }) {
   )
 }
 export default function App() {
-  return <Outlet />
+  return (
+    <>
+      <Outlet />
+      <Statistics />
+    </>
+  )
 }
 
 export function ErrorBoundary() {
   const error = useRouteError()
   return (
     <>
+      <Statistics statusCode={errorPageStatusCode(error)} />
       <h1 tabIndex={-1}>
         {isRouteErrorResponse(error)
           ? `${error.status} ${error.statusText}`
