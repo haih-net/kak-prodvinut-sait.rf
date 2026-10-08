@@ -1,11 +1,6 @@
-import type * as React from 'react'
+import type { PageSection } from '../../components/SectionNavigation'
 
-interface HomeSection {
-  id: string
-  label: string
-}
-
-export const homeSections: readonly HomeSection[] = [
+export const homeSections: readonly PageSection[] = [
   { id: 'question', label: 'Вопрос' },
   { id: 'answer', label: 'Ответ' },
   { id: 'seriously', label: 'Серьёзно?' },
@@ -17,23 +12,3 @@ export const homeSections: readonly HomeSection[] = [
   { id: 'conclusion', label: 'Что остаётся' },
   { id: 'experiment', label: 'Эксперимент' },
 ]
-
-export const navigateToSection = (
-  event: React.MouseEvent<HTMLAnchorElement>,
-): void => {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-    return
-  }
-  const target = document.getElementById(event.currentTarget.hash.slice(1))
-  if (!target) {
-    return
-  }
-  event.preventDefault()
-  target.focus({ preventScroll: true })
-  target.scrollIntoView({
-    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      ? 'instant'
-      : 'smooth',
-    block: 'start',
-  })
-}

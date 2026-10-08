@@ -1,10 +1,15 @@
 import type * as React from 'react'
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router'
 import { Share } from '../../components/Share'
 import { IntroductionStyled } from './introduction.styles'
-import { navigateToSection } from './sections'
+interface IntroductionProps {
+  navigateToSection: React.MouseEventHandler<HTMLAnchorElement>
+}
 
-export const Introduction: React.FC = () => {
+export const Introduction: React.FC<IntroductionProps> = ({
+  navigateToSection,
+}) => {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -55,9 +60,9 @@ export const Introduction: React.FC = () => {
             </span>
             <span>как-продвинуть-сайт.рф</span>
           </span>
-          <span className="author-line">
+          <Link to="/about" className="author-line">
             Николай Ланец <span> / </span> 19+ лет в веб-разработке
-          </span>
+          </Link>
         </header>
         <div className="question-composition">
           <h1 className="screen-text" id="main-title" tabIndex={-1}>

@@ -40,6 +40,13 @@ export const IntroductionStyled = styled.div`
   }
   .author-line {
     display: none;
+    /* Имя намеренно нейтрально: это подпись, а не привлекающий внимание CTA.
+       Акцент темы появляется только при наведении или клавиатурном фокусе. */
+    text-decoration: none;
+  }
+  .author-line:hover,
+  .author-line:focus-visible {
+    color: #ce3023;
   }
   .question-composition {
     position: relative;

@@ -37,7 +37,7 @@ export const NavigationStyled = styled.nav`
   .contents-caption {
     margin: 0 0 1.1rem;
     font: 0.62rem monospace;
-    letter-spacing: 0.13em;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: #716d65;
   }
@@ -45,6 +45,29 @@ export const NavigationStyled = styled.nav`
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  .site-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .site-links a {
+    border: 0;
+  }
+  /* Имя — спокойная личная подпись, не акцентная кнопка продвижения. */
+  .identity-link {
+    display: block;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #d9d5cd;
+    border-bottom: 0;
+    color: #716d65;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .identity-link:hover {
+    color: #ce3023;
   }
   li {
     margin: 0;
@@ -108,6 +131,9 @@ export const NavigationStyled = styled.nav`
     width: 10.5rem;
     transform: translateY(calc(-50% + var(--rail-drift, 0px)));
     .contents-toggle {
+      display: none;
+    }
+    .identity-link {
       display: none;
     }
     .contents-panel,

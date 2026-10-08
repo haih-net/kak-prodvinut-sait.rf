@@ -17,21 +17,32 @@ test('публичные страницы предрендерены с русс
     new URL('../../build/client/sitemap.xml', import.meta.url),
     'utf8',
   )
-  for (const path of ['/', '/blog']) {
+  for (const path of ['/', '/blog', '/about']) {
     const html = read(path)
     const head = html.match(/<head>([\s\S]*?)<\/head>/)[1]
     expect(html).toContain('lang="ru"')
     expect((html.match(/<h1[ >]/g) || []).length).toBe(1)
     expect(head).toContain(`rel="canonical" href="${canonicalUrl(path)}"`)
     expect(head).not.toContain('https://haih.site')
-    expect(head).not.toContain('og:image')
+    if (path === '/about') {
+      expect(head).toContain('og:image')
+      expect(head).toContain('nikolai-lanets-')
+      expect(html).toContain('Николай Ланец')
+      expect(html).toContain('width="800" height="930"')
+    } else {
+      expect(head).not.toContain('og:image')
+    }
     titles.add(head.match(/<title>(.*?)<\/title>/)[1])
     const graph = JSON.parse(
       head.match(
         /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
       )[1],
     )['@graph']
-    expect(graph.every((entry) => entry.inLanguage === 'ru')).toBe(true)
+    expect(
+      graph
+        .filter((entry) => ['WebSite', 'WebPage'].includes(entry['@type']))
+        .every((entry) => entry.inLanguage === 'ru'),
+    ).toBe(true)
     const css = [...head.matchAll(/href="(\/assets\/[^" ]+\.css)"/g)]
     expect(css.length).toBeGreaterThan(0)
     for (const [, asset] of css)
@@ -40,7 +51,7 @@ test('публичные страницы предрендерены с русс
       ).toBe(true)
     expect(sitemap).toContain(canonicalUrl(path))
   }
-  expect(titles.size).toBe(2)
+  expect(titles.size).toBe(3)
   expect(sitemap).not.toContain('/solutions')
   expect(read('/')).toContain('Серьезно. Никак.')
 })

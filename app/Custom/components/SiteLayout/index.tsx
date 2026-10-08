@@ -30,7 +30,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({ children }) => {
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
-      <SiteFooter key={pathname} withSidebar={pathname === '/'} />
+      <SiteFooter key={pathname} pathname={pathname} />
     </SiteStyled>
   )
 }

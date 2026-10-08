@@ -18,7 +18,7 @@ test('ответ доступен с клавиатуры, переход сох
         .evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
     )
     .toBeLessThan(2)
-  await expect(page.locator('nav a[aria-current]')).toHaveAttribute(
+  await expect(page.locator('nav a[aria-current="location"]')).toHaveAttribute(
     'href',
     '#answer',
   )
@@ -60,10 +60,9 @@ test('оглавление ведёт во все разделы и отслеж
     }
     await navigation.locator(`a[href="#${id}"]`).click()
     await expect(page.locator(`#${id}`)).toBeFocused()
-    await expect(navigation.locator('a[aria-current]')).toHaveAttribute(
-      'href',
-      `#${id}`,
-    )
+    await expect(
+      navigation.locator('a[aria-current="location"]'),
+    ).toHaveAttribute('href', `#${id}`)
     if (await toggle.isVisible()) {
       await expect(toggle).toHaveAttribute('aria-expanded', 'false')
     }
@@ -71,10 +70,9 @@ test('оглавление ведёт во все разделы и отслеж
   await page
     .locator('#advertising')
     .evaluate((element) => element.scrollIntoView())
-  await expect(navigation.locator('a[aria-current]')).toHaveAttribute(
-    'href',
-    '#advertising',
-  )
+  await expect(
+    navigation.locator('a[aria-current="location"]'),
+  ).toHaveAttribute('href', '#advertising')
   await expect(page.locator('h1')).toHaveCSS('transform', 'none')
   if (await toggle.isVisible()) {
     await toggle.click()
