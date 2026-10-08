@@ -25,7 +25,7 @@ test('гидратация, отложенная загрузка дневник
   await page.evaluate(() => Reflect.set(window, '__spaTest', 'same-document'))
   await page.getByRole('link', { name: 'Читать дневник с начала' }).click()
   await expect(page).toHaveURL(/\/blog$/)
-  await expect(page).toHaveTitle('Дневник: 50 сайтов за месяц')
+  await expect(page).toHaveTitle('Дневник эксперимента — Как продвинуть сайт')
   await expect(page.getByRole('heading', { level: 1 })).toBeFocused()
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
@@ -35,7 +35,7 @@ test('гидратация, отложенная загрузка дневник
     true,
   )
   await page.goBack()
-  await expect(page).toHaveTitle('Как продвинуть сайт? Никак.')
+  await expect(page).toHaveTitle('Как продвинуть сайт?')
   await page.goForward()
   await expect(page).toHaveURL(/\/blog$/)
   expect(await page.evaluate(() => Reflect.get(window, '__spaTest'))).toBe(

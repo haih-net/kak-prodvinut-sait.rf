@@ -40,10 +40,13 @@ export const useSectionNavigation = ({
   )
   const navigateToSection = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>): void => {
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
-        {return}
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return
+      }
       const target = document.getElementById(event.currentTarget.hash.slice(1))
-      if (!target) {return}
+      if (!target) {
+        return
+      }
       event.preventDefault()
       setExpanded(false)
       target.focus({ preventScroll: true })
@@ -89,7 +92,9 @@ export const useSectionNavigation = ({
       )
     }
     const schedule = (): void => {
-      if (!frame) {frame = window.requestAnimationFrame(update)}
+      if (!frame) {
+        frame = window.requestAnimationFrame(update)
+      }
     }
     update()
     setInteractive(true)

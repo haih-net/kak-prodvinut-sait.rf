@@ -21,8 +21,7 @@ export interface SeoHeadersProps {
     headline: string
     published: string
     modified?: string
-    version: string
-    commitUrl: string
+    citations?: string[]
   }
 }
 
@@ -115,9 +114,9 @@ export function createSeoMeta({
       '@type': 'Blog',
       '@id': blogId,
       url: `${site.origin}/blog`,
-      name: 'HAIH Blog',
+      name: 'Дневник эксперимента — Как продвинуть сайт',
       description:
-        'Observations, questions and conclusions from building HAIH, recorded against specific project revisions.',
+        'Исследования, рабочие записи и выводы о продвижении и удержании аудитории.',
       inLanguage: site.language,
       isPartOf: { '@id': websiteId },
       ...(blog
@@ -153,7 +152,7 @@ export function createSeoMeta({
     graph.push({
       '@type': 'ItemList',
       '@id': `${canonical}#items`,
-      name: collection?.name ?? 'HAIH blog posts',
+      name: collection?.name ?? 'Записи дневника по порядку',
       numberOfItems: items.length,
       itemListElement: items.map((item, index) => ({
         '@type': 'ListItem',
@@ -208,14 +207,7 @@ export function createSeoMeta({
             },
           }
         : {}),
-      citation: article.commitUrl,
-      about: {
-        '@type': 'SoftwareSourceCode',
-        name: 'HAIH Site',
-        codeRepository: 'https://github.com/haih-net/haih.site',
-        version: article.version,
-        url: article.commitUrl,
-      },
+      ...(article.citations ? { citation: article.citations } : {}),
     })
   }
   const data: SchemaGraph = {

@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest'
 import { readFileSync, existsSync } from 'node:fs'
-import { canonicalUrl } from '../../app/components/seo/site.ts'
+import { author, canonicalUrl } from '../../app/components/seo/site.ts'
 
 const read = (path) =>
   readFileSync(
@@ -17,7 +17,12 @@ test('публичные страницы предрендерены с русс
     new URL('../../build/client/sitemap.xml', import.meta.url),
     'utf8',
   )
-  for (const path of ['/', '/blog', '/about']) {
+  for (const path of [
+    '/',
+    '/blog',
+    '/about',
+    '/blog/pochemu-ya-zapuskayu-etot-eksperiment',
+  ]) {
     const html = read(path)
     const head = html.match(/<head>([\s\S]*?)<\/head>/)[1]
     expect(html).toContain('lang="ru"')
@@ -43,6 +48,15 @@ test('публичные страницы предрендерены с русс
         .filter((entry) => ['WebSite', 'WebPage'].includes(entry['@type']))
         .every((entry) => entry.inLanguage === 'ru'),
     ).toBe(true)
+    if (path.startsWith('/blog/')) {
+      const article = graph.find((entry) => entry['@type'] === 'BlogPosting')
+      expect(article.headline).toBe('Почему я запускаю этот эксперимент')
+      expect(article.datePublished).toBe('2026-10-08')
+      expect(article.author.name).toBe(author.name)
+      expect(article.citation[0]).toContain('fi1osof.ru/projects/')
+      expect(head).not.toContain('HAIH')
+      expect(html).toContain('27 августа')
+    }
     const css = [...head.matchAll(/href="(\/assets\/[^" ]+\.css)"/g)]
     expect(css.length).toBeGreaterThan(0)
     for (const [, asset] of css)
@@ -51,7 +65,7 @@ test('публичные страницы предрендерены с русс
       ).toBe(true)
     expect(sitemap).toContain(canonicalUrl(path))
   }
-  expect(titles.size).toBe(3)
+  expect(titles.size).toBe(4)
   expect(sitemap).not.toContain('/solutions')
   expect(read('/')).toContain('Серьезно. Никак.')
 })

@@ -107,7 +107,9 @@ test('общий хук: секции «Обо мне», фокус, счётч�
   ]
   await expect(nav.locator('ol a')).toHaveCount(ids.length)
   for (const id of ids) {
-    if (await toggle.isVisible()) {await toggle.click()}
+    if (await toggle.isVisible()) {
+      await toggle.click()
+    }
     await nav.locator(`a[href="#${id}"]`).click()
     await expect(page.locator(`#${id}`)).toBeFocused()
     await expect(nav.locator('a[aria-current="location"]')).toHaveAttribute(
@@ -117,8 +119,9 @@ test('общий хук: секции «Обо мне», фокус, счётч�
     await expect(nav.locator('.section-counter')).toHaveText(
       `${String(ids.indexOf(id) + 1).padStart(2, '0')} / 08`,
     )
-    if (await toggle.isVisible())
-      {await expect(toggle).toHaveAttribute('aria-expanded', 'false')}
+    if (await toggle.isVisible()) {
+      await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    }
   }
   if (await toggle.isVisible()) {
     await toggle.click()
@@ -184,11 +187,15 @@ test('портрет, текст и навигация не перекрываю
     const heading = await page.locator('#profile-title').boundingBox()
     expect(portrait).not.toBeNull()
     expect(heading).not.toBeNull()
-    if (!portrait || !heading) {throw new Error('Нет портрета или заголовка')}
+    if (!portrait || !heading) {
+      throw new Error('Нет портрета или заголовка')
+    }
     expect(portrait.x + portrait.width).toBeLessThanOrEqual(heading.x)
     if (width >= 1088) {
       const nav = await page.locator('.contents-panel').boundingBox()
-      if (!nav) {throw new Error('Нет меню')}
+      if (!nav) {
+        throw new Error('Нет меню')
+      }
       expect(nav.x + nav.width).toBeLessThan(portrait.x)
     } else {
       await page.getByRole('button', { name: 'Разделы' }).click()

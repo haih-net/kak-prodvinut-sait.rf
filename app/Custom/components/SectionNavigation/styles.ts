@@ -84,6 +84,8 @@ export const NavigationStyled = styled.nav`
     border-bottom: 1px solid #d9d5cd;
   }
   .section-number {
+    flex-shrink: 0;
+    white-space: nowrap;
     font: 0.62rem monospace;
     color: #807b72;
   }

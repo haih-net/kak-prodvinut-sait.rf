@@ -10,7 +10,11 @@ interface SiteFooterProps {
 export const SiteFooter: React.FC<SiteFooterProps> = ({ pathname }) => {
   const currentPath = pathname.replace(/\/+$/, '') || '/'
   const isHome = currentPath === '/'
-  const withSidebar = isHome || currentPath === '/about'
+  const withSidebar =
+    isHome ||
+    currentPath === '/about' ||
+    currentPath === '/blog' ||
+    currentPath.startsWith('/blog/')
 
   return (
     <FooterStyled data-with-sidebar={withSidebar}>
@@ -20,8 +24,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ pathname }) => {
         </div>
         <div className="footer-conversation">
           <h2>
-            {isHome ? 'Продвинем хотя бы' : 'Есть с кем'}{' '}
-            <br />
+            {isHome ? 'Продвинем хотя бы' : 'Есть с кем'} <br />
             <span>{isHome ? 'этот разговор.' : 'поделиться?'}</span>
           </h2>
           <div className="footer-sharing">

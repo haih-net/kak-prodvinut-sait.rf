@@ -1,14 +1,16 @@
 import type { MetaFunction } from 'react-router'
 import { createSeoMeta, unavailableSeoMeta } from '../components/seo/SeoHeaders'
 import type { SeoHandle } from '../components/seo/SeoHeaders'
-import { BlogPage } from '../pages/Blog/BlogPage'
+import { journalPosts } from '../Custom/pages/Blog/posts'
+import { BlogPage } from '../Custom/pages/Blog'
 
 export const handle: SeoHandle = {
   seo: {
-    title: 'Дневник: 50 сайтов за месяц',
+    title: 'Дневник эксперимента — Как продвинуть сайт',
     description:
-      'Дневник эксперимента «50 сайтов за месяц». Скоро здесь появятся первые записи о решениях, работе и результатах.',
+      'Исследую способы продвижения и удержания аудитории. От причин запуска к проверкам, рабочим записям и результатам.',
     path: '/blog',
+    blog: { posts: [...journalPosts] },
   },
 }
 export const meta: MetaFunction = ({ error }) =>

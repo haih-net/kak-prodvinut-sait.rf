@@ -90,7 +90,7 @@ export const Blog: Story = {
     ).toBeVisible()
     await expect(canvas.getByRole('contentinfo')).toHaveAttribute(
       'data-with-sidebar',
-      'false',
+      'true',
     )
     await expect(
       canvas.getByRole('button', { name: 'Поделиться страницей' }),

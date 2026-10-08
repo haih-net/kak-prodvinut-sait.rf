@@ -41,7 +41,7 @@ test('один футер меняет содержание, отступ и а�
   ).toHaveValue(canonicalUrl('/about'))
   await footer.getByRole('link', { name: 'Дневник эксперимента' }).click()
   await expect(page).toHaveURL(/\/blog$/)
-  await expect(footer).toHaveAttribute('data-with-sidebar', 'false')
+  await expect(footer).toHaveAttribute('data-with-sidebar', 'true')
   await expect(footer.getByRole('heading')).toHaveText('Есть с кем поделиться?')
   await footer
     .getByRole('button', { name: 'Поделиться страницей', exact: true })
